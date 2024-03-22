@@ -1,0 +1,17 @@
+.card {
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  position: relative;
+}
+.card:hover {
+  transform: scale(1.02, 1.02);
+}
+.stock {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+button {
+  position: absolute;
+  bottom: 5px;
+}

@@ -1,0 +1,57 @@
+<h2>Login</h2>
+<hr />
+
+<form
+  class="w-50 m-auto pt-3"
+  #loginForm="ngForm"
+  (ngSubmit)="handleSubmit(loginForm)"
+>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input
+      type="email"
+      class="form-control"
+      required
+      id="exampleInputEmail1"
+      aria-describedby="emailHelp"
+      name="email"
+      pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+      ngModel
+      #loginEmail="ngModel"
+    />
+    @if (loginEmail.touched && loginEmail.invalid) {
+    <div id="emailHelp" class="form-text text-danger">
+      @if (loginEmail.errors?.['required']) {
+      <small>this field is required</small>
+      } @else if(loginEmail.errors?.['pattern']) {
+      <div class="text-danger">Invalid email format</div>
+      }
+    </div>
+    }
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      required
+      id="exampleInputPassword1"
+      name="password"
+      ngModel
+      #loginPassword="ngModel"
+    />
+    @if (loginPassword.touched && loginPassword.invalid) {
+    <div id="emailHelp" class="form-text text-danger">
+      @if (loginPassword.errors?.['required']) {
+      <small>this field is required</small>
+      }
+    </div>
+    }
+  </div>
+  <!-- <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">
+    Submit
+  </button> -->
+  <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">
+    Submit
+  </button>
+</form>

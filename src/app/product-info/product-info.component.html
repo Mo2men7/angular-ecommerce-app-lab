@@ -1,0 +1,92 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <img
+        [src]="product.thumbnail"
+        class="img-fluid w-75"
+        [alt]="product.title"
+      />
+    </div>
+    <div class="col-md-6">
+      <div class="fs-1 fw-bold">{{ product.title }}</div>
+      <div class="text-black opacity-75">{{ product.description }}</div>
+      <div>
+        <br />
+        <span>
+          {{
+            product.rating > 4.5
+              ? "⭐⭐⭐⭐⭐"
+              : product.rating > 3.5
+              ? "⭐⭐⭐⭐"
+              : product.rating > 2.5
+              ? "⭐⭐⭐"
+              : product.rating > 1.5
+              ? "⭐⭐"
+              : product.rating > 0.5
+              ? "⭐"
+              : ""
+          }}
+        </span>
+        <span class="text-black opacity-75">({{ product.rating }})</span>
+      </div>
+      <hr />
+      <div class="d-flex gap-4">
+        <p
+          [ngClass]="
+            product.discountPercentage
+              ? 'text-danger text-decoration-line-through'
+              : ''
+          "
+          class="fs-3 fw-bold"
+        >
+          ${{ product.price.toFixed(2) }}
+        </p>
+        <p
+          [ngClass]="product.discountPercentage ? 'text-success ' : ''"
+          class="fs-3 fw-bold"
+        >
+          ${{
+            (
+              product.price -
+              (product.price * product.discountPercentage) / 100
+            ).toFixed(2)
+          }}
+        </p>
+      </div>
+      <span class="rounded-pill px-3 py-1 mb-2 me-1" style="background: #eee">
+        {{ product.category }}
+      </span>
+      <span class="rounded-pill px-3 py-1 mb-2 me-1" style="background: #eee">
+        {{ product.brand }}
+      </span>
+      <hr />
+      <div class="d-flex justify-content-between mt-3 mb-4">
+        <div class="counter rounded-pill">
+          <div style="cursor: pointer" (click)="decrement()">-</div>
+          <div>{{ counter }}</div>
+          <div style="cursor: pointer" (click)="increment()">+</div>
+        </div>
+        <div class="fs-4">
+          Total:
+          <span class="text-success"
+            >${{ product.price | discount : product.discountPercentage }}</span
+          >
+        </div>
+      </div>
+      <div class="buttons">
+        <div class="row">
+          <div class="col-md-6">
+            <button class="btn btn-success p-2 rounded-pill w-100">
+              Buy Now
+            </button>
+          </div>
+          <div class="col-md-6">
+            <button class="btn btn-outline-dark p-2 rounded-pill w-100">
+              Add To Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

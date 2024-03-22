@@ -1,0 +1,9 @@
+.counter {
+  width: 86px;
+  background: #eee;
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 2px;
+  font-weight: 600;
+  font-size: 17px;
+}

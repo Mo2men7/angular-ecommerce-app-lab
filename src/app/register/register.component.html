@@ -1,0 +1,158 @@
+<h2>Register</h2>
+<hr />
+
+<form
+  class="w-50 m-auto pt-3"
+  [formGroup]="registerForm"
+  (ngSubmit)="handleSubmit()"
+>
+  <!-- 2 column grid layout with text inputs for the first and last names -->
+  <div class="row mb-4">
+    <div class="col">
+      <div data-mdb-input-init class="form-outline">
+        <label class="form-label" for="form3Example1">First name</label>
+        <input
+          type="text"
+          id="form3Example1"
+          class="form-control"
+          formControlName="registerFirstName"
+        />
+        @if (registerForm.controls['registerFirstName'].touched &&
+        registerForm.controls['registerFirstName'].invalid) {
+        <div class="form-text text-danger">
+          @if (registerForm.controls['registerFirstName'].errors?.['required'])
+          {
+          <small>this field is required</small>
+          }
+        </div>
+        }
+      </div>
+    </div>
+    <div class="col">
+      <div data-mdb-input-init class="form-outline">
+        <label class="form-label" for="form3Example2">Last name</label>
+        <input
+          type="text"
+          id="form3Example2"
+          class="form-control"
+          formControlName="registerFirstName"
+        />
+        @if (registerForm.controls['registerLastName'].touched &&
+        registerForm.controls['registerLastName'].invalid) {
+        <div class="form-text text-danger">
+          @if (registerForm.controls['registerLastName'].errors?.['required']) {
+          <small>this field is required</small>
+          }
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Username input -->
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="form3Example0">Username</label>
+    <input
+      type="text"
+      id="form3Example0"
+      class="form-control"
+      formControlName="registerUsername"
+    />
+    @if (registerForm.controls['registerUsername'].touched &&
+    registerForm.controls['registerUsername'].invalid) {
+    <div class="form-text text-danger">
+      @if (registerForm.controls['registerUsername'].errors?.['required']) {
+      <small>this field is required</small>
+      }@else if(registerForm.controls['registerUsername'].errors?.['pattern']) {
+      <small>the username must have no spaces</small> }
+    </div>
+    }
+  </div>
+
+  <!-- Email input -->
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="form3Example3">Email address</label>
+    <input
+      type="email"
+      id="form3Example3"
+      class="form-control"
+      formControlName="registerEmail"
+    />
+    <div class="form-text text-danger">
+      @if (registerForm.controls['registerEmail'].touched &&
+      registerForm.controls['registerEmail'].invalid) {
+      <div class="form-text text-danger">
+        @if (registerForm.controls['registerEmail'].errors?.['required']) {
+        <small>this field is required</small>
+        } @else if(registerForm.controls['registerEmail'].errors?.['pattern']) {
+        <div class="text-danger">Invalid email format</div>
+        }
+      </div>
+      }
+    </div>
+  </div>
+
+  <!-- Password input -->
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="form3Example4">Password</label>
+    <input
+      type="password"
+      id="form3Example4"
+      class="form-control"
+      formControlName="registerPassword"
+    />
+    @if (registerForm.controls['registerPassword'].touched &&
+    registerForm.controls['registerPassword'].invalid) {
+    <div class="form-text text-danger">
+      @if (registerForm.controls['registerPassword'].errors?.['required']) {
+      <small>this field is required</small>
+      } @else if(registerForm.controls['registerPassword'].errors?.['pattern'])
+      {
+      <div class="text-danger">
+        <ul>
+          <li>length not less than 8 characters</li>
+          <li>at least one uppercase letter</li>
+          <li>at least one lowercase letter</li>
+          <li>at least one digit</li>
+          <li>at least one special character</li>
+        </ul>
+      </div>
+      }
+    </div>
+    }
+  </div>
+
+  <!-- Password input -->
+  <div data-mdb-input-init class="form-outline mb-4">
+    <label class="form-label" for="form3Example6">Confirm Password</label>
+    <input
+      type="password"
+      id="form3Example6"
+      class="form-control"
+      formControlName="registerCPassword"
+      required
+      (pattern)="(registerForm.controls['registerPassword'].value)"
+    />
+    @if (registerForm.controls['registerCPassword'].touched &&
+    registerForm.controls['registerCPassword'].invalid) {
+    <div class="form-text text-danger">
+      @if (registerForm.controls['registerCPassword'].errors?.['required']) {
+      <small>this field is required</small>
+      } @else if(registerForm.controls['registerCPassword'].errors?.['pattern'])
+      {
+      <div class="text-danger">Password doesn't match</div>
+      }
+    </div>
+    }
+  </div>
+
+  <!-- Submit button -->
+  <button
+    data-mdb-ripple-init
+    type="submit"
+    class="btn btn-primary btn-block mb-4"
+    [disabled]="registerForm.invalid"
+  >
+    Sign up
+  </button>
+</form>

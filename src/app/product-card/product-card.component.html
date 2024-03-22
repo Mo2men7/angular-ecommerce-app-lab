@@ -1,0 +1,34 @@
+<div class="card h-100" (click)="seeProductInfo(prdct.id)">
+  <img [src]="prdct.thumbnail" class="img-thumbnail" />
+  <div class="card-body">
+    <div class="d-flex flex-column fw-bold">
+      <h5 class="card-title">{{ prdct.title }}</h5>
+      <h5><sup>$</sup>{{ prdct.price }}</h5>
+    </div>
+    <div class="mb-5">
+      {{
+        prdct.rating > 4.5
+          ? "⭐⭐⭐⭐⭐"
+          : prdct.rating > 3.5
+          ? "⭐⭐⭐⭐"
+          : prdct.rating > 2.5
+          ? "⭐⭐⭐"
+          : prdct.rating > 1.5
+          ? "⭐⭐"
+          : prdct.rating > 0.5
+          ? "⭐"
+          : ""
+      }}
+    </div>
+    <button class="btn btn-outline-dark rounded-pill">Add to cart</button>
+    @if (prdct.stock==0) {
+    <div class="bg-danger rounded-pill stock text-light px-2 py-1">
+      Out of stock
+    </div>
+    }@else {
+    <div class="bg-success rounded-pill stock text-light px-2 py-1">
+      In stock
+    </div>
+    }
+  </div>
+</div>
