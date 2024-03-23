@@ -1,27 +1,35 @@
 <div class="card h-100" (click)="seeProductInfo(prdct.id)">
-  <img [src]="prdct.thumbnail" class="img-thumbnail" />
-  <div class="card-body">
-    <div class="d-flex flex-column fw-bold">
-      <h5 class="card-title">{{ prdct.title }}</h5>
-      <h5><sup>$</sup>{{ prdct.price }}</h5>
+  <img [src]="prdct.image" class="img-thumbnail" />
+  <!-- <img [src]="prdct.thumbnail" class="img-thumbnail" /> -->
+  <div class="card-body d-flex flex-column justify-content-between">
+    <div id="cart-top">
+      <div class="d-flex flex-column fw-bold">
+        <h5 class="card-title">{{ prdct.title }}</h5>
+        <h5><sup>$</sup>{{ prdct.price }}</h5>
+      </div>
+      <!-- <div class="mb-5">
+        {{
+          prdct.rating > 4.5
+            ? "⭐⭐⭐⭐⭐"
+            : prdct.rating > 3.5
+            ? "⭐⭐⭐⭐"
+            : prdct.rating > 2.5
+            ? "⭐⭐⭐"
+            : prdct.rating > 1.5
+            ? "⭐⭐"
+            : prdct.rating > 0.5
+            ? "⭐"
+            : ""
+        }}
+      </div> -->
+
+      <div class="text-black-50">
+        {{ prdct.sizes.join(", ") }}
+      </div>
     </div>
-    <div class="mb-5">
-      {{
-        prdct.rating > 4.5
-          ? "⭐⭐⭐⭐⭐"
-          : prdct.rating > 3.5
-          ? "⭐⭐⭐⭐"
-          : prdct.rating > 2.5
-          ? "⭐⭐⭐"
-          : prdct.rating > 1.5
-          ? "⭐⭐"
-          : prdct.rating > 0.5
-          ? "⭐"
-          : ""
-      }}
-    </div>
-    <button class="btn btn-outline-dark rounded-pill">Add to cart</button>
-    @if (prdct.stock==0) {
+    <button class="btn btn-outline-dark rounded-pill mt-1">Add to cart</button>
+
+    @if (prdct.onSale) {
     <div class="bg-danger rounded-pill stock text-light px-2 py-1">
       Out of stock
     </div>

@@ -8,4 +8,9 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css',
 })
-export class NavComponent {}
+export class NavComponent {
+  cartCount?: number;
+  cartPrds: any = [];
+  constructor() {}
+  ngOnInit() {}
+}

@@ -1,1 +1,45 @@
-<p>cart works!</p>
+<h2>My Cart</h2>
+<hr />
+<div class="container">
+  @if (!cartPrds) {
+  <h1>Your Cart is Currently Empty</h1>
+  <p>
+    wanna
+    <button (click)="redirectToHome()" class="btn btn-dark me-2">
+      start a counter
+    </button>
+    ?
+  </p>
+  } @else { @for (p of cartPrds; track $index) {
+  <!-- <app-cart-card [p]="product" [i]="$index"></app-cart-card> -->
+  <div class="d-flex align-items-center justify-content-between">
+    <div><img [src]="p.image" style="width: 120px" /></div>
+    <div>
+      <h4>{{ p.title }}</h4>
+    </div>
+    <div class="counter rounded-pill d-flex gap-3">
+      <div
+        style="cursor: pointer"
+        class="btn btn-light"
+        (click)="decreaseCounter($index)"
+      >
+        -
+      </div>
+      <div class="fs-4">{{ cartCount[$index] }}</div>
+      <div
+        style="cursor: pointer"
+        (click)="increaseCounter($index)"
+        class="btn btn-success"
+      >
+        +
+      </div>
+    </div>
+    <div><button class="btn btn-light">x</button></div>
+    <div class="text-success">
+      <p class="fs-4 fw-bold">$ {{ p.price }}</p>
+    </div>
+  </div>
+
+  } }
+</div>
+<div class="fs-3 ">{{calculatetotalprice()}}</div>

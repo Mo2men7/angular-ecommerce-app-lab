@@ -1,0 +1,27 @@
+<div class="d-flex align-items-center justify-content-between">
+  <div><img [src]="p.image" style="width: 120px" /></div>
+  <div>
+    <h4>{{ p.title }}</h4>
+  </div>
+  <div class="counter rounded-pill d-flex gap-3">
+    <div
+      style="cursor: pointer"
+      class="btn btn-light"
+      (click)="decreaseCCCounter(i)"
+    >
+      -
+    </div>
+    <div class="fs-4">{{ ccCounter }}</div>
+    <div
+      style="cursor: pointer"
+      (click)="increaseCCCounter(i)"
+      class="btn btn-success"
+    >
+      +
+    </div>
+  </div>
+  <div><button class="btn btn-light">x</button></div>
+  <div class="text-success">
+    <p class="fs-4 fw-bold">$ {{ p.price }}</p>
+  </div>
+</div>

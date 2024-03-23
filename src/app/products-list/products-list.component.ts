@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import data from '../../assets/products-list.json';
+// import data from '../../assets/products-list.json';
+import { ProductsService } from '../products.service';
 import { ProductCardComponent } from '../product-card/product-card.component';
 
 @Component({
@@ -10,5 +11,14 @@ import { ProductCardComponent } from '../product-card/product-card.component';
   styleUrl: './products-list.component.css',
 })
 export class ProductsListComponent {
-  products: any = data;
+  // products: any = data;
+  products: any;
+
+  constructor(private productsService: ProductsService) {}
+  ngOnInit() {
+    this.productsService.getProducts().subscribe(
+      (res) => (this.products = res),
+      (err) => console.log(err)
+    );
+  }
 }

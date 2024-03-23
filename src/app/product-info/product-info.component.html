@@ -1,16 +1,14 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <img
-        [src]="product.thumbnail"
-        class="img-fluid w-75"
-        [alt]="product.title"
-      />
+      <img [src]="product.image" class="img-fluid w-75" [alt]="product.title" />
     </div>
     <div class="col-md-6">
       <div class="fs-1 fw-bold">{{ product.title }}</div>
       <div class="text-black opacity-75">{{ product.description }}</div>
-      <div>
+      <div class="text-black-50">{{ product.sizes.join(", ") }}</div>
+      <div class="text-black-50">Gender: {{ product.gender }}</div>
+      <!-- <div>
         <br />
         <span>
           {{
@@ -28,9 +26,21 @@
           }}
         </span>
         <span class="text-black opacity-75">({{ product.rating }})</span>
-      </div>
+      </div> -->
       <hr />
-      <div class="d-flex gap-4">
+      <div
+        [ngClass]="product.price == product.discountPrice ? 'd-flex gap-4' : ''"
+      >
+        @if(product.price==product.discountPrice){
+        <p class="fs-3 fw-bold text-danger text-decoration-line-through">
+          $ {{ product.price }}
+        </p>
+        <p class="fs-3 fw-bold text-success">$ {{ product.discountPrice }}</p>
+        }@else {
+        <p class="fs-3 fw-bold text-success">$ {{ product.price }}</p>
+        }
+      </div>
+      <!-- <div class="d-flex gap-4">
         <p
           [ngClass]="
             product.discountPercentage
@@ -52,15 +62,17 @@
             ).toFixed(2)
           }}
         </p>
-      </div>
-      <span class="rounded-pill px-3 py-1 mb-2 me-1" style="background: #eee">
-        {{ product.category }}
-      </span>
-      <span class="rounded-pill px-3 py-1 mb-2 me-1" style="background: #eee">
-        {{ product.brand }}
+      </div> -->
+      <!-- <span class="rounded-pill px-3 py-1 mb-2 me-1" style="background: #eee">
+      </span> -->
+      <span class="me-2">Base Color : </span>
+      <span
+        class="rounded-pill px-3 py-1 mb-2 me-1"
+        [style.background-color]="product.baseColor.toLowerCase()"
+      >
       </span>
       <hr />
-      <div class="d-flex justify-content-between mt-3 mb-4">
+      <!-- <div class="d-flex justify-content-between mt-3 mb-4">
         <div class="counter rounded-pill">
           <div style="cursor: pointer" (click)="decrement()">-</div>
           <div>{{ counter }}</div>
@@ -72,19 +84,23 @@
             >${{ product.price | discount : product.discountPercentage }}</span
           >
         </div>
-      </div>
+      </div> -->
       <div class="buttons">
         <div class="row">
-          <div class="col-md-6">
+          <!-- <div class="col-md-6">
             <button class="btn btn-success p-2 rounded-pill w-100">
               Buy Now
             </button>
-          </div>
-          <div class="col-md-6">
-            <button class="btn btn-outline-dark p-2 rounded-pill w-100">
-              Add To Cart
-            </button>
-          </div>
+          </div> -->
+          <!-- <div class="col-md-6"> -->
+          <button
+            (click)="redirectToCart(product)"
+            class="btn btn-outline-dark p-2 rounded-pill mx-auto"
+            style="width: 300px"
+          >
+            Add To Cart
+          </button>
+          <!-- </div> -->
         </div>
       </div>
     </div>
